@@ -12,7 +12,7 @@ const AppBuilds = ({ bucketName }) => {
         const response = await axios.get(
           `http://localhost:5000/api/v1/aws/apps/${bucketName}/builds`
         );
-        setBuilds(response.data.data);
+        setBuilds(response.data.data.Contents);
       } catch (error) {
         console.log(error);
       }
@@ -20,7 +20,7 @@ const AppBuilds = ({ bucketName }) => {
     getAppBuilds();
   }, []);
 
-  return <AppBuildsTable />;
+  return <AppBuildsTable builds={builds} />;
 };
 
 export default AppBuilds;

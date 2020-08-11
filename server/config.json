@@ -16,23 +16,5 @@
     "cloudFrontOriginDomain": "myjadeproject-0e706840-a549-4a28-ac19-b73d80b1a64d-prod.s3.amazonaws.com",
     "createdOn": "2020-08-10T17:05:38.683Z",
     "gitFolder": "gatsby-blog"
-  },
-  {
-    "projectName": "My Jade Project 2",
-    "gitProvider": "GitHub",
-    "gitExists": true,
-    "gitUrl": "https://github.com/jade-framework/gatsby-blog-2",
-    "bucketName": "myjadeproject-0e706840-a549-4a28-ac19-b73d80b1a64d-2",
-    "bucketNames": [
-      "myjadeproject-0e706840-a549-4a28-ac19-b73d80b1a64d-prod",
-      "myjadeproject-0e706840-a549-4a28-ac19-b73d80b1a64d-builds",
-      "myjadeproject-0e706840-a549-4a28-ac19-b73d80b1a64d-lambda",
-      "myjadeproject-0e706840-a549-4a28-ac19-b73d80b1a64d-stage"
-    ],
-    "lambdaNames": "jadeInvalidateCloudFrontFile",
-    "cloudFrontOriginId": "S3-myjadeproject-0e706840-a549-4a28-ac19-b73d80b1a64d",
-    "cloudFrontOriginDomain": "myjadeproject-0e706840-a549-4a28-ac19-b73d80b1a64d-prod.s3.amazonaws.com",
-    "createdOn": "2020-08-10T17:05:38.683Z",
-    "gitFolder": "gatsby-blog"
   }
 ]

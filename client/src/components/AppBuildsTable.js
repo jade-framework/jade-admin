@@ -8,16 +8,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Title from './Title';
 
-// Generate Data
-function createData(id, date, status, other) {
-  return { id, date, status, other };
-}
-
-const rows = [
-  createData(0, '16 Mar, 2019', 'Enabled', 'abc'),
-  createData(1, '16 Mar, 2019', 'Disabled', 'def'),
-];
-
 function preventDefault(event) {
   event.preventDefault();
 }
@@ -28,8 +18,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AppBuildsTable = () => {
+const AppBuildsTable = ({ builds }) => {
   const classes = useStyles();
+  const rows = builds.map((build) => {
+    const dateMili = parseInt(build.Key.replace('/.zip', ''), 10);
+    const dateObj = new Date(dateMili);
+    const date = dateObj.toDateString();
+    return (
+      <TableRow key={build.Key}>
+        <TableCell>{date}</TableCell>
+        <TableCell>{build.ETag}</TableCell>
+        <TableCell align="right">Enabled</TableCell>
+      </TableRow>
+    );
+  });
+
   return (
     <React.Fragment>
       <Title>Build History</Title>
@@ -37,19 +40,11 @@ const AppBuildsTable = () => {
         <TableHead>
           <TableRow>
             <TableCell>Date</TableCell>
-            <TableCell>Status</TableCell>
-            <TableCell align="right">Something</TableCell>
+            <TableCell>Etag</TableCell>
+            <TableCell align="right">Status</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.date}</TableCell>
-              <TableCell>{row.status}</TableCell>
-              <TableCell align="right">{row.other}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
+        <TableBody>{rows}</TableBody>
       </Table>
       <div className={classes.seeMore}>
         <Link color="primary" href="#" onClick={preventDefault}>
