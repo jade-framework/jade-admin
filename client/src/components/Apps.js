@@ -5,8 +5,11 @@ import List from '@material-ui/core/List';
 
 import AppListItem from './AppListItem';
 
-const Apps = () => {
+const Apps = ({ onClickAppItem }) => {
   const [apps, setApps] = useState([]);
+  const handleClick = (app) => {
+    onClickAppItem(app);
+  };
 
   useEffect(() => {
     const getAllApps = async () => {
@@ -25,7 +28,9 @@ const Apps = () => {
   return (
     <List>
       {apps.map((app) => (
-        <AppListItem key={app.gitUrl} name={app.projectName} />
+        <div onClick={() => handleClick(app)} key={app.gitUrl}>
+          <AppListItem name={app.projectName} />
+        </div>
       ))}
     </List>
   );

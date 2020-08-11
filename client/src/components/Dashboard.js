@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -19,7 +19,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
 import Apps from './Apps';
-import Orders from './Orders';
+import AppBuilds from './AppBuilds';
 
 function Copyright() {
   return (
@@ -117,13 +117,18 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [currentApp, setCurrentApp] = useState();
+  const [open, setOpen] = useState(true);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const handleUpdateCurrentApp = (app) => {
+    setCurrentApp(app);
+  };
+
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
@@ -153,7 +158,7 @@ export default function Dashboard() {
             noWrap
             className={classes.title}
           >
-            Dashboard
+            Jade Dashboard
           </Typography>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
@@ -175,7 +180,7 @@ export default function Dashboard() {
           </IconButton>
         </div>
         <Divider />
-        <Apps />
+        <Apps onClickAppItem={handleUpdateCurrentApp} />
         <Divider />
       </Drawer>
       <main className={classes.content}>
@@ -185,7 +190,7 @@ export default function Dashboard() {
             {/* Recent Orders */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <Orders />
+                {currentApp && <AppBuilds bucketName={currentApp.bucketName} />}
               </Paper>
             </Grid>
           </Grid>
