@@ -19,7 +19,7 @@ exports.getAllApps = catchAsync(async (req, res, next) => {
 
 exports.getAppBuilds = catchAsync(async (req, res, next) => {
   console.log(req.params.bucketName);
-  AWS.config.update({ apiVersion: 'latest', region: 'us-west-2' });
+  AWS.config.update({ apiVersion: 'latest', region: process.env.REGION });
   const s3 = new S3();
   const asyncListObjects = promisify(s3.listObjects.bind(s3));
   const builds = await asyncListObjects({
