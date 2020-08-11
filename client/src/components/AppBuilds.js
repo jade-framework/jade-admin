@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import List from '@material-ui/core/List';
+
+import AppBuildItem from './AppListItem';
 
 const AppBuilds = () => {
   const [builds, setBuilds] = useState([]);
@@ -19,13 +22,11 @@ const AppBuilds = () => {
   }, []);
 
   return (
-    <div>
-      <ul>
-        {builds.map((build) => (
-          <li key="1">Build here</li>
-        ))}
-      </ul>
-    </div>
+    <List>
+      {builds.map((build) => (
+        <AppBuildItem key="1" name="name goes here" />
+      ))}
+    </List>
   );
 };
 

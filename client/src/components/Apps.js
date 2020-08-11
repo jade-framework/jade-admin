@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import List from '@material-ui/core/List';
+
+import AppListItem from './AppListItem';
+
 const Apps = () => {
   const [apps, setApps] = useState([]);
 
@@ -19,13 +23,11 @@ const Apps = () => {
   }, []);
 
   return (
-    <div>
-      <ul>
-        {apps.map((app) => (
-          <li key={app.gitUrl}>{app.projectName}</li>
-        ))}
-      </ul>
-    </div>
+    <List>
+      {apps.map((app) => (
+        <AppListItem key={app.gitUrl} name={app.projectName} />
+      ))}
+    </List>
   );
 };
 
