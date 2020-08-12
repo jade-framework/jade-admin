@@ -177,24 +177,26 @@ const Dashboard = () => {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          {currentApp && (
-            <Grid container spacing={3}>
-              {/* App Info */}
-              <Grid item xs={12}>
-                <Paper className={classes.paper}>
-                  {currentApp && <AppInfo app={currentApp} />}
-                </Paper>
+          <>
+            {currentApp && (
+              <Grid container spacing={3}>
+                {/* App Info */}
+                <Grid item xs={12}>
+                  <Paper className={classes.paper}>
+                    {currentApp && <AppInfo app={currentApp} />}
+                  </Paper>
+                </Grid>
+                {/* Build History */}
+                <Grid item xs={12}>
+                  <Paper className={classes.paper}>
+                    {currentApp && (
+                      <AppBuilds bucketName={currentApp.bucketName} />
+                    )}
+                  </Paper>
+                </Grid>
               </Grid>
-              {/* Build History */}
-              <Grid item xs={12}>
-                <Paper className={classes.paper}>
-                  {currentApp && (
-                    <AppBuilds bucketName={currentApp.bucketName} />
-                  )}
-                </Paper>
-              </Grid>
-            </Grid>
-          )}
+            )}
+          </>
           {/* <Box pt={4}>
             <Copyright />
           </Box> */}
