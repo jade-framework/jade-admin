@@ -1,13 +1,32 @@
 import React from 'react';
-import './App.css';
+
 import Dashboard from './components/Dashboard';
-import AppBuilds from './components/AppBuilds';
+
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+import { teal } from '@material-ui/core/colors';
+
+const theme = createMuiTheme({
+  palette: {
+    // type: 'dark',
+    primary: {
+      // Purple and green play nicely together.
+      main: '#0E1F25',
+    },
+    // secondary: {
+    //   // This is green.A700 as hex.
+    //   main: '#11cb5f',
+    // },
+  },
+});
 
 function App() {
   return (
-    <div className="App">
-      <Dashboard />
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <Dashboard />
+      </div>
+    </ThemeProvider>
   );
 }
 

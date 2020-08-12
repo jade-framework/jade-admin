@@ -5,6 +5,19 @@ import List from '@material-ui/core/List';
 
 import AppListItem from './AppListItem';
 
+const parseDynamoData = (data) => {
+  const parsed = data.map((item) => {
+    const newItem = {};
+    Object.keys(item).forEach((attribute) => {
+      const attributeObj = item[attribute];
+      const attributeValue = Object.values(attributeObj)[0];
+      newItem[attribute] = attributeValue;
+    });
+    return newItem;
+  });
+  return parsed;
+};
+
 const Apps = ({ onClickAppItem }) => {
   const [apps, setApps] = useState([]);
   const handleClick = (app) => {
@@ -17,7 +30,8 @@ const Apps = ({ onClickAppItem }) => {
         const response = await axios.get(
           'http://localhost:5000/api/v1/aws/apps'
         );
-        setApps(response.data.data);
+        console.log(response);
+        setApps(parseDynamoData(response.data.data));
       } catch (error) {
         console.log(error);
       }

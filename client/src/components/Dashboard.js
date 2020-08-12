@@ -19,6 +19,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 import Apps from './Apps';
 import AppBuilds from './AppBuilds';
+import AppInfo from './AppInfo';
 
 function Copyright() {
   return (
@@ -176,17 +177,27 @@ const Dashboard = () => {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
-            {/* Recent Orders */}
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                {currentApp && <AppBuilds bucketName={currentApp.bucketName} />}
-              </Paper>
+          {currentApp && (
+            <Grid container spacing={3}>
+              {/* App Info */}
+              <Grid item xs={12}>
+                <Paper className={classes.paper}>
+                  {currentApp && <AppInfo app={currentApp} />}
+                </Paper>
+              </Grid>
+              {/* Build History */}
+              <Grid item xs={12}>
+                <Paper className={classes.paper}>
+                  {currentApp && (
+                    <AppBuilds bucketName={currentApp.bucketName} />
+                  )}
+                </Paper>
+              </Grid>
             </Grid>
-          </Grid>
-          <Box pt={4}>
+          )}
+          {/* <Box pt={4}>
             <Copyright />
-          </Box>
+          </Box> */}
         </Container>
       </main>
     </div>
