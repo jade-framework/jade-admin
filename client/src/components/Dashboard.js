@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
-import Box from '@material-ui/core/Box';
+// import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -21,16 +21,16 @@ import Apps from './Apps';
 import AppBuilds from './AppBuilds';
 import AppInfo from './AppInfo';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      <Link color="inherit" href="https://github.com/jade-framework">
-        Jade Framework
-      </Link>{' '}
-      {new Date().getFullYear()}
-    </Typography>
-  );
-}
+// function Copyright() {
+//   return (
+//     <Typography variant="body2" color="textSecondary" align="center">
+//       <Link color="inherit" href="https://github.com/jade-framework">
+//         Jade Framework
+//       </Link>{' '}
+//       {new Date().getFullYear()}
+//     </Typography>
+//   );
+// }
 
 const drawerWidth = 240;
 
