@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import AppBuildsTable from './AppBuildsTable';
+import parseDynamoData from '../util/parseDynamoData';
 
 const AppBuilds = ({ bucketName }) => {
   const [builds, setBuilds] = useState([]);
@@ -12,7 +13,7 @@ const AppBuilds = ({ bucketName }) => {
         const response = await axios.get(
           `http://localhost:5000/api/v1/aws/apps/${bucketName}/builds`
         );
-        setBuilds(response.data.data.Contents);
+        setBuilds(parseDynamoData(response.data.data.Items));
       } catch (error) {
         console.log(error);
       }
@@ -21,6 +22,7 @@ const AppBuilds = ({ bucketName }) => {
   }, []);
 
   return <AppBuildsTable builds={builds} />;
+  // return <div>hi</div>;
 };
 
 export default AppBuilds;

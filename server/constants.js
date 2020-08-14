@@ -1,3 +1,4 @@
-const projectTableName = 'JadeProjects';
+const projectsTableName = 'JadeProjects';
+const projectsVersionsTableName = 'JadeProjectsVersions';
 
-module.exports = { projectTableName };
+module.exports = { projectsTableName, projectsVersionsTableName };

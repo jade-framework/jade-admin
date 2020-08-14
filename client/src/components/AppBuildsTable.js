@@ -8,6 +8,12 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Title from './Title';
 
+/*
+@TODOS
+- Add link to commit history (Default to master branch)
+- Update table fields & add timestamp (versionId)
+*/
+
 function preventDefault(event) {
   event.preventDefault();
 }
@@ -21,37 +27,51 @@ const useStyles = makeStyles((theme) => ({
 const AppBuildsTable = ({ builds }) => {
   const classes = useStyles();
   const rows = builds.map((build) => {
-    const dateMili = parseInt(build.Key.replace('/.zip', ''), 10);
+    const dateMili = parseInt(build.versionId, 10);
     const dateObj = new Date(dateMili);
     const date = dateObj.toDateString();
+    const githubCommitUrl = build.commitUrl || build.gitUrl;
     return (
-      <TableRow key={build.Key}>
+      <TableRow key={build.projectId}>
         <TableCell>{date}</TableCell>
-        <TableCell>{build.ETag}</TableCell>
-        <TableCell align="right">Enabled</TableCell>
+        <TableCell>
+          <Link color="primary" href={githubCommitUrl} target="_blank">
+            {githubCommitUrl}
+          </Link>
+        </TableCell>
+
+        <TableCell align="right">
+          <Link
+            target="_blank"
+            color="primary"
+            href={`http://${build.bucketName}-stage.s3-website.us-west-2.amazonaws.com`}
+          >
+            View
+          </Link>
+        </TableCell>
       </TableRow>
     );
   });
 
   return (
-    <React.Fragment>
+    <>
       <Title>Build History</Title>
       <Table size="small">
         <TableHead>
           <TableRow>
             <TableCell>Date</TableCell>
-            <TableCell>Etag</TableCell>
-            <TableCell align="right">Status</TableCell>
+            <TableCell>Repository</TableCell>
+            <TableCell align="right">View Build</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>{rows}</TableBody>
       </Table>
-      <div className={classes.seeMore}>
+      {/* <div className={classes.seeMore}>
         <Link color="primary" href="#" onClick={preventDefault}>
           See previous builds
         </Link>
-      </div>
-    </React.Fragment>
+      </div> */}
+    </>
   );
 };
 

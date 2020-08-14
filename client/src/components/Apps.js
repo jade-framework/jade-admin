@@ -4,19 +4,7 @@ import axios from 'axios';
 import List from '@material-ui/core/List';
 
 import AppListItem from './AppListItem';
-
-const parseDynamoData = (data) => {
-  const parsed = data.map((item) => {
-    const newItem = {};
-    Object.keys(item).forEach((attribute) => {
-      const attributeObj = item[attribute];
-      const attributeValue = Object.values(attributeObj)[0];
-      newItem[attribute] = attributeValue;
-    });
-    return newItem;
-  });
-  return parsed;
-};
+import parseDynamoData from '../util/parseDynamoData';
 
 const Apps = ({ onClickAppItem }) => {
   const [apps, setApps] = useState([]);

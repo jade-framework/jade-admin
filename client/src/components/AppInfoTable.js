@@ -6,6 +6,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import Title from './Title';
 import { List, ListItem, ListItemText, Tooltip } from '@material-ui/core';
 
+/*
+@TODOS
+- activeVersion from dynamo (same as versionId in builds table)
+*/
+
 const useStyles = makeStyles((theme) => ({
   seeMore: {
     marginTop: theme.spacing(3),
@@ -26,7 +31,7 @@ const AppInfoTable = ({ app }) => {
           <ListItemText>
             <Link
               target="_blank"
-              color="secondary"
+              color="primary"
               href={`http://${app.cloudFrontDomainName}`}
             >
               View live site
@@ -37,7 +42,7 @@ const AppInfoTable = ({ app }) => {
           <ListItemText>
             <Link
               target="_blank"
-              color="secondary"
+              color="primary"
               href={`http://${app.bucketName}-stage.s3-website.us-west-2.amazonaws.com`}
             >
               View staged site
