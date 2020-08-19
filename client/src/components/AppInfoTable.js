@@ -22,11 +22,8 @@ const AppInfoTable = ({ app }) => {
 
   return (
     <>
-      <Title>Project Info</Title>
+      <Title>{app.projectName}</Title>
       <List>
-        <ListItem>
-          <ListItemText>{app.projectName}</ListItemText>
-        </ListItem>
         <ListItem>
           <ListItemText>
             <Link
@@ -34,7 +31,7 @@ const AppInfoTable = ({ app }) => {
               color="primary"
               href={`http://${app.cloudFrontDomainName}`}
             >
-              View live site
+              Production site
             </Link>
           </ListItemText>
         </ListItem>
@@ -45,10 +42,18 @@ const AppInfoTable = ({ app }) => {
               color="primary"
               href={`http://${app.bucketName}-stage.s3-website.us-west-2.amazonaws.com`}
             >
-              View staged site
+              Staging site
             </Link>
           </ListItemText>
         </ListItem>
+        <ListItem>
+          <ListItemText>
+            <Link target="_blank" color="primary" href={app.gitUrl}>
+              Repository
+            </Link>
+          </ListItemText>
+        </ListItem>
+
         <ListItem>
           <Tooltip
             title="Add this to your Github settings"
