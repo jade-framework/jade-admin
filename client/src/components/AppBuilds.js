@@ -19,7 +19,7 @@ const AppBuilds = ({ bucketName }) => {
       }
     };
     getAppBuilds();
-  }, []);
+  }, [builds]);
 
   return <AppBuildsTable builds={builds} />;
   // return <div>hi</div>;

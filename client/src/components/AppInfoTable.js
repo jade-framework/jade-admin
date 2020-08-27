@@ -11,7 +11,7 @@ import { List, ListItem, ListItemText, Tooltip } from '@material-ui/core';
 - activeVersion from dynamo (same as versionId in builds table)
 */
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   seeMore: {
     marginTop: theme.spacing(3),
   },
@@ -27,9 +27,9 @@ const AppInfoTable = ({ app }) => {
         <ListItem>
           <ListItemText>
             <Link
-              target="_blank"
-              color="primary"
-              href={`http://${app.cloudFrontDomainName}`}
+              target='_blank'
+              color='primary'
+              href={`https://${app.cloudFrontDomainName}`}
             >
               Production site
             </Link>
@@ -38,8 +38,8 @@ const AppInfoTable = ({ app }) => {
         <ListItem>
           <ListItemText>
             <Link
-              target="_blank"
-              color="primary"
+              target='_blank'
+              color='primary'
               href={`http://${app.bucketName}-stage.s3-website.us-west-2.amazonaws.com`}
             >
               Staging site
@@ -48,7 +48,7 @@ const AppInfoTable = ({ app }) => {
         </ListItem>
         <ListItem>
           <ListItemText>
-            <Link target="_blank" color="primary" href={app.gitUrl}>
+            <Link target='_blank' color='primary' href={app.gitUrl}>
               Repository
             </Link>
           </ListItemText>
@@ -56,8 +56,8 @@ const AppInfoTable = ({ app }) => {
 
         <ListItem>
           <Tooltip
-            title="Add this to your Github settings"
-            placement="bottom-start"
+            title='Add this to your Github settings'
+            placement='bottom-start'
           >
             <ListItemText>
               Webhook Address: {`http://${app.publicIp}/webhook`}
