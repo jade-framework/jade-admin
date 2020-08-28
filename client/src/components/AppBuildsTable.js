@@ -29,7 +29,8 @@ const AppBuildsTable = ({ builds }) => {
   const rows = builds.map((build) => {
     const dateMili = parseInt(build.versionId, 10);
     const dateObj = new Date(dateMili);
-    const date = dateObj.toDateString();
+    // const date = dateObj.toDateString();
+    const date = dateObj.toString();
     const githubCommitUrl = build.commitUrl || build.gitUrl;
     return (
       <TableRow key={build.projectId}>

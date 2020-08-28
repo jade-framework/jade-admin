@@ -13,7 +13,11 @@ const AppBuilds = ({ bucketName }) => {
         const response = await axios.get(
           `http://localhost:5000/api/v1/aws/apps/${bucketName}/builds`,
         );
-        setBuilds(parseDynamoData(response.data.data.Items));
+        const parsedBuilds = parseDynamoData(response.data.data.Items);
+        const sortedBuilds = parsedBuilds.sort((a, b) => {
+          return b.versionId - a.versionId;
+        });
+        setBuilds(sortedBuilds);
       } catch (error) {
         console.log(error);
       }
