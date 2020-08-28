@@ -11,7 +11,7 @@ const AppBuilds = ({ bucketName }) => {
     const getAppBuilds = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/v1/aws/apps/${bucketName}/builds`
+          `http://localhost:5000/api/v1/aws/apps/${bucketName}/builds`,
         );
         setBuilds(parseDynamoData(response.data.data.Items));
       } catch (error) {
@@ -19,7 +19,7 @@ const AppBuilds = ({ bucketName }) => {
       }
     };
     getAppBuilds();
-  }, [builds]);
+  }, [bucketName]);
 
   return <AppBuildsTable builds={builds} />;
   // return <div>hi</div>;

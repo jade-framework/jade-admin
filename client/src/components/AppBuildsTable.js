@@ -39,16 +39,6 @@ const AppBuildsTable = ({ builds }) => {
             {githubCommitUrl}
           </Link>
         </TableCell>
-
-        <TableCell align="right">
-          <Link
-            target="_blank"
-            color="primary"
-            href={`http://${build.bucketName}-stage.s3-website.us-west-2.amazonaws.com`}
-          >
-            View
-          </Link>
-        </TableCell>
       </TableRow>
     );
   });
@@ -61,7 +51,6 @@ const AppBuildsTable = ({ builds }) => {
           <TableRow>
             <TableCell>Date</TableCell>
             <TableCell>Repository</TableCell>
-            <TableCell align="right">View Build</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>{rows}</TableBody>
