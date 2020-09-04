@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AppBuildsTable = ({ builds }) => {
+const AppBuildsTable = ({ builds, region, bucketName }) => {
   const classes = useStyles();
   const rows = builds.map((build) => {
     const dateMili = parseInt(build.versionId, 10);
@@ -32,12 +32,18 @@ const AppBuildsTable = ({ builds }) => {
     // const date = dateObj.toDateString();
     const date = dateObj.toString();
     const githubCommitUrl = build.commitUrl || build.gitUrl;
+    const buildUrl = `https://${bucketName}-builds.s3-${region}.amazonaws.com/${build.versionId}.zip`;
     return (
       <TableRow key={build.projectId}>
         <TableCell>{date}</TableCell>
         <TableCell>
           <Link color="primary" href={githubCommitUrl} target="_blank">
             {githubCommitUrl}
+          </Link>
+        </TableCell>
+        <TableCell>
+          <Link color="primary" href={buildUrl} target="_blank">
+            download
           </Link>
         </TableCell>
       </TableRow>
@@ -52,6 +58,7 @@ const AppBuildsTable = ({ builds }) => {
           <TableRow>
             <TableCell>Date</TableCell>
             <TableCell>Repository</TableCell>
+            <TableCell>Build Files</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>{rows}</TableBody>

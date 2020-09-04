@@ -49,6 +49,13 @@ exports.getAppBuilds = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.getAwsRegion = catchAsync(async (req, res, next) => {
+  res.status(200).json({
+    status: 'success',
+    data: region,
+  });
+});
+
 /*
 // const readFile = promisify(fs.readFile);
   // let rawdata = await readFile(`${process.cwd()}/config.json`);
