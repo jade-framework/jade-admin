@@ -1,30 +1,46 @@
-const fs = require('fs');
+// const fs = require('fs');
 const { promisify } = require('util');
 const AWS = require('aws-sdk/global');
-const S3 = require('aws-sdk/clients/s3');
+const Dynamo = require('aws-sdk/clients/dynamodb');
 
+const { getRegion } = require('../utils/getRegion');
 const catchAsync = require('../utils/catchAsync');
-const readFile = promisify(fs.readFile);
+const {
+  projectsTableName,
+  projectsVersionsTableName,
+} = require('../constants');
+
+const region = getRegion();
 
 exports.getAllApps = catchAsync(async (req, res, next) => {
-  let rawdata = await readFile(`${process.cwd()}/config.json`);
-  let apps = JSON.parse(rawdata);
-  console.log(apps);
+  AWS.config.update({ apiVersion: 'latest', region });
+  const dynamo = new Dynamo();
+  const asyncScan = promisify(dynamo.scan.bind(dynamo));
+  const response = await asyncScan({ TableName: projectsTableName });
+  console.log(response);
 
   res.status(200).json({
     status: 'success',
-    data: apps,
+    count: response.Count,
+    data: response.Items,
   });
 });
 
 exports.getAppBuilds = catchAsync(async (req, res, next) => {
-  console.log(req.params.bucketName);
-  AWS.config.update({ apiVersion: 'latest', region: process.env.REGION });
-  const s3 = new S3();
-  const asyncListObjects = promisify(s3.listObjects.bind(s3));
-  const builds = await asyncListObjects({
-    Bucket: `${req.params.bucketName}-builds`,
+  AWS.config.update({ apiVersion: 'latest', region });
+  const bucketName = req.params.bucketName;
+  const dynamo = new Dynamo();
+  const asyncScan = promisify(dynamo.scan.bind(dynamo));
+  const response = await asyncScan({
+    TableName: projectsVersionsTableName,
+    ExpressionAttributeValues: {
+      ':bucket': {
+        S: bucketName,
+      },
+    },
+    FilterExpression: `bucketName = :bucket`,
   });
+  const builds = response;
   console.log(builds);
 
   res.status(200).json({
@@ -32,3 +48,17 @@ exports.getAppBuilds = catchAsync(async (req, res, next) => {
     data: builds,
   });
 });
+
+exports.getAwsRegion = catchAsync(async (req, res, next) => {
+  res.status(200).json({
+    status: 'success',
+    data: region,
+  });
+});
+
+/*
+// const readFile = promisify(fs.readFile);
+  // let rawdata = await readFile(`${process.cwd()}/config.json`);
+  // let apps = JSON.parse(rawdata);
+  // console.log(apps);
+*/

@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
-import Box from '@material-ui/core/Box';
+// import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -19,17 +19,18 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 import Apps from './Apps';
 import AppBuilds from './AppBuilds';
+import AppInfo from './AppInfo';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      <Link color="inherit" href="https://github.com/jade-framework">
-        Jade Framework
-      </Link>{' '}
-      {new Date().getFullYear()}
-    </Typography>
-  );
-}
+// function Copyright() {
+//   return (
+//     <Typography variant="body2" color="textSecondary" align="center">
+//       <Link color="inherit" href="https://github.com/jade-framework">
+//         Jade Framework
+//       </Link>{' '}
+//       {new Date().getFullYear()}
+//     </Typography>
+//   );
+// }
 
 const drawerWidth = 240;
 
@@ -176,17 +177,29 @@ const Dashboard = () => {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
-            {/* Recent Orders */}
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                {currentApp && <AppBuilds bucketName={currentApp.bucketName} />}
-              </Paper>
-            </Grid>
-          </Grid>
-          <Box pt={4}>
+          <>
+            {currentApp && (
+              <Grid container spacing={3}>
+                {/* App Info */}
+                <Grid item xs={12}>
+                  <Paper className={classes.paper}>
+                    {currentApp && <AppInfo app={currentApp} />}
+                  </Paper>
+                </Grid>
+                {/* Build History */}
+                <Grid item xs={12}>
+                  <Paper className={classes.paper}>
+                    {currentApp && (
+                      <AppBuilds bucketName={currentApp.bucketName} />
+                    )}
+                  </Paper>
+                </Grid>
+              </Grid>
+            )}
+          </>
+          {/* <Box pt={4}>
             <Copyright />
-          </Box>
+          </Box> */}
         </Container>
       </main>
     </div>
