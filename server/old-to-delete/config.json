@@ -11,7 +11,6 @@
       "myjadeproject-31d1621f-1acc-4e70-aaf2-271fe31c9632-stage"
     ],
     "lambdaNames": "jadeInvalidateCloudFrontFile",
-<<<<<<< HEAD:server/config.json
     "cloudFrontOriginId": "S3-myjadeproject-31d1621f-1acc-4e70-aaf2-271fe31c9632",
     "cloudFrontOriginDomain": "myjadeproject-31d1621f-1acc-4e70-aaf2-271fe31c9632-prod.s3.amazonaws.com",
     "createdOn": "2020-08-10T03:29:26.094Z",
@@ -52,15 +51,5 @@
     "cloudFrontOriginDomain": "mynewjadeproject-e7bb9f3f-39a0-4c21-8ebc-55087687aca9-prod.s3.amazonaws.com",
     "createdOn": "2020-08-10T03:32:42.075Z",
     "gitFolder": "asdf3"
-=======
-    "cloudFrontOriginId": "S3-myjadeproject-0e706840-a549-4a28-ac19-b73d80b1a64d",
-    "cloudFrontOriginDomain": "myjadeproject-0e706840-a549-4a28-ac19-b73d80b1a64d-prod.s3.amazonaws.com",
-    "createdOn": "2020-08-10T17:05:38.683Z",
-    "gitFolder": "gatsby-blog",
-    "isLive": true,
-    "builtOn": "1597122696347",
-    "cloudFrontDistributionId": "12345",
-    "deleted": false
->>>>>>> 5d5b19cc638b8359a1cac4e73010989d2dfa4a84:server/old-to-delete/config.json
   }
 ]
