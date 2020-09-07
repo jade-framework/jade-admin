@@ -8,7 +8,7 @@
   "scripts": {
     "server": "nodemon server.js",
     "client": "cd ../client && yarn start",
-    "start": "concurrently \"yarn run server &\" \"yarn run client &\"",
+    "start": "concurrently \"yarn run server\" \"yarn run client\"",
     "start:prod": "NODE_ENV=production nodemon server.js"
   },
   "dependencies": {
