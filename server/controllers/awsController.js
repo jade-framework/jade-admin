@@ -1,4 +1,3 @@
-// const fs = require('fs');
 const { promisify } = require("util");
 const AWS = require("aws-sdk/global");
 const Dynamo = require("aws-sdk/clients/dynamodb");
