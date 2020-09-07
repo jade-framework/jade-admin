@@ -1,22 +1,18 @@
-import React from 'react';
-import Link from '@material-ui/core/Link';
-import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Title from './Title';
+import React from "react";
+import Link from "@material-ui/core/Link";
+import { makeStyles } from "@material-ui/core/styles";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Title from "./Title";
 
 /*
 @TODOS
 - Add link to commit history (Default to master branch)
 - Update table fields & add timestamp (versionId)
 */
-
-function preventDefault(event) {
-  event.preventDefault();
-}
 
 const useStyles = makeStyles((theme) => ({
   seeMore: {
@@ -25,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AppBuildsTable = ({ builds, region, bucketName }) => {
-  const classes = useStyles();
   const rows = builds.map((build) => {
     const dateMili = parseInt(build.versionId, 10);
     const dateObj = new Date(dateMili);
@@ -43,7 +38,7 @@ const AppBuildsTable = ({ builds, region, bucketName }) => {
         </TableCell>
         <TableCell>
           <Link color="primary" href={buildUrl} target="_blank">
-            download
+            Download
           </Link>
         </TableCell>
       </TableRow>
