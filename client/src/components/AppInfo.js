@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from "react";
 
-import AppInfoTable from './AppInfoTable';
+import AppInfoTable from "./AppInfoTable";
 
 const AppInfo = ({ app }) => {
   return <AppInfoTable app={app} />;
