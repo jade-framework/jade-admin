@@ -58,7 +58,7 @@ const AppBuildsTable = ({ builds, region, bucketName }) => {
           <TableRow>
             <TableCell>Date</TableCell>
             <TableCell>Repository</TableCell>
-            <TableCell>Build Files</TableCell>
+            <TableCell align="right">Build Files</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>{rows}</TableBody>
