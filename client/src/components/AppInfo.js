@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-import AppInfoTable from "./AppInfoTable";
+import AppInfoTable from './AppInfoTable';
 
-const AppInfo = ({ app }) => {
-  return <AppInfoTable app={app} />;
+const AppInfo = ({ app, region }) => {
+  return <AppInfoTable app={app} region={region} />;
 };
 
 export default AppInfo;

@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-import Link from "@material-ui/core/Link";
-import { makeStyles } from "@material-ui/core/styles";
-import Title from "./Title";
-import { List, ListItem, ListItemText, Tooltip } from "@material-ui/core";
+import Link from '@material-ui/core/Link';
+import { makeStyles } from '@material-ui/core/styles';
+import Title from './Title';
+import { List, ListItem, ListItemText, Tooltip } from '@material-ui/core';
 
 /*
 @TODOS
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AppInfoTable = ({ app }) => {
+const AppInfoTable = ({ app, region }) => {
   return (
     <>
       <Title>{app.projectName}</Title>
@@ -37,7 +37,7 @@ const AppInfoTable = ({ app }) => {
             <Link
               target="_blank"
               color="primary"
-              href={`http://${app.bucketName}-stage.s3-website.us-west-2.amazonaws.com`}
+              href={`http://${app.bucketName}-stage.s3-website.${region}.amazonaws.com`}
             >
               Staging site
             </Link>
